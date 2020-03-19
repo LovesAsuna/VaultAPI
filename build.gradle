@@ -1,0 +1,27 @@
+plugins {
+    id 'java'
+}
+
+repositories {
+    mavenLocal()
+
+    maven {
+        url = 'https://hub.spigotmc.org/nexus/content/groups/public/'
+    }
+
+    mavenCentral()
+}
+
+dependencies {
+    testCompile 'junit:junit:4.12'
+    compileOnly 'org.spigotmc:spigot-api:1.15.2-R0.1-SNAPSHOT'
+}
+
+group = 'org.sct.vault'
+version = '1.7'
+description = 'VaultAPI'
+sourceCompatibility = '1.8'
+
+tasks.withType(JavaCompile) {
+    options.encoding = 'UTF-8'
+}
