@@ -1,20 +1,21 @@
 plugins {
     id 'java'
+    id "com.jfrog.bintray" version "1.8.5"
+    id 'maven-publish'
 }
 
 repositories {
     mavenLocal()
 
     maven {
-        url = 'https://hub.spigotmc.org/nexus/content/groups/public/'
+        url 'https://repo.codemc.io/repository/nms/'
     }
 
     mavenCentral()
 }
 
 dependencies {
-    testCompile 'junit:junit:4.12'
-    compileOnly 'org.spigotmc:spigot-api:1.15.2-R0.1-SNAPSHOT'
+    compileOnly 'org.bukkit:craftbukkit:1.15.2-R0.1-SNAPSHOT'
 }
 
 group = 'org.sct.vault'
@@ -24,4 +25,48 @@ sourceCompatibility = '1.8'
 
 tasks.withType(JavaCompile) {
     options.encoding = 'UTF-8'
+}
+
+java {
+    withSourcesJar()
+}
+
+bintray {
+    user = 'lovesasuna'
+    key = System.getenv("JcenterKey")
+    publications = ['plugin']
+    pkg {
+        repo = 'maven'
+        name = 'VaultAPI'
+        licenses = ['LPGL-3.0']
+        vcsUrl = 'https://github.com/LovesAsuna/VaultAPI.git'
+        version {
+            name = project.version
+            desc = 'API for Vault'
+            released = new Date()
+        }
+    }
+}
+
+java {
+    withSourcesJar()
+}
+
+publishing {
+    publications {
+        plugin(MavenPublication) {
+            from components.java
+            description 'API for Vault'
+            pom {
+                developers {
+                    developer {
+                        name = 'MilkBowl'
+                    }
+                }
+                scm {
+                    url = 'https://github.com/LovesAsuna/VaultAPI'
+                }
+            }
+        }
+    }
 }
