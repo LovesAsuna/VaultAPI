@@ -1,7 +1,9 @@
 # Usage
-
-## Maven
-
+## Repository
+```
+https://jcenter.bintray.com/
+```
+### Maven
 ```xml
 <dependency>
  	<groupId>org.sct.vault</groupId>
@@ -10,9 +12,7 @@
  	<type>pom</type>
  </dependency>
 ```
-
-## Gradle
-
+### Gradle
 ```
 implementation 'org.sct.vault:VaultAPI:1.7'
 ```
